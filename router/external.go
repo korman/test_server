@@ -24,6 +24,7 @@ func Init() {
 	getTitleList := router.Group("/")
 	{
 		getTitleList.GET("", handler.Index)
+		getTitleList.GET("booklist", handler.BookList)
 	}
 
 	ginpprof.Wrap(router)
