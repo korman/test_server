@@ -98,20 +98,185 @@ func (m *PbBookList) GetBooks() []*PbBookInfo {
 	return nil
 }
 
+type PbChapterList struct {
+	Chapters             []*PbChapterInfo `protobuf:"bytes,1,rep,name=chapters,proto3" json:"chapters,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *PbChapterList) Reset()         { *m = PbChapterList{} }
+func (m *PbChapterList) String() string { return proto.CompactTextString(m) }
+func (*PbChapterList) ProtoMessage()    {}
+func (*PbChapterList) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f200ecbfd1cbb64d, []int{2}
+}
+
+func (m *PbChapterList) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PbChapterList.Unmarshal(m, b)
+}
+func (m *PbChapterList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PbChapterList.Marshal(b, m, deterministic)
+}
+func (m *PbChapterList) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PbChapterList.Merge(m, src)
+}
+func (m *PbChapterList) XXX_Size() int {
+	return xxx_messageInfo_PbChapterList.Size(m)
+}
+func (m *PbChapterList) XXX_DiscardUnknown() {
+	xxx_messageInfo_PbChapterList.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PbChapterList proto.InternalMessageInfo
+
+func (m *PbChapterList) GetChapters() []*PbChapterInfo {
+	if m != nil {
+		return m.Chapters
+	}
+	return nil
+}
+
+type PbChapterInfo struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PbChapterInfo) Reset()         { *m = PbChapterInfo{} }
+func (m *PbChapterInfo) String() string { return proto.CompactTextString(m) }
+func (*PbChapterInfo) ProtoMessage()    {}
+func (*PbChapterInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f200ecbfd1cbb64d, []int{3}
+}
+
+func (m *PbChapterInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PbChapterInfo.Unmarshal(m, b)
+}
+func (m *PbChapterInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PbChapterInfo.Marshal(b, m, deterministic)
+}
+func (m *PbChapterInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PbChapterInfo.Merge(m, src)
+}
+func (m *PbChapterInfo) XXX_Size() int {
+	return xxx_messageInfo_PbChapterInfo.Size(m)
+}
+func (m *PbChapterInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_PbChapterInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PbChapterInfo proto.InternalMessageInfo
+
+func (m *PbChapterInfo) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type PbPageInfo struct {
+	Data                 string   `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PbPageInfo) Reset()         { *m = PbPageInfo{} }
+func (m *PbPageInfo) String() string { return proto.CompactTextString(m) }
+func (*PbPageInfo) ProtoMessage()    {}
+func (*PbPageInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f200ecbfd1cbb64d, []int{4}
+}
+
+func (m *PbPageInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PbPageInfo.Unmarshal(m, b)
+}
+func (m *PbPageInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PbPageInfo.Marshal(b, m, deterministic)
+}
+func (m *PbPageInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PbPageInfo.Merge(m, src)
+}
+func (m *PbPageInfo) XXX_Size() int {
+	return xxx_messageInfo_PbPageInfo.Size(m)
+}
+func (m *PbPageInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_PbPageInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PbPageInfo proto.InternalMessageInfo
+
+func (m *PbPageInfo) GetData() string {
+	if m != nil {
+		return m.Data
+	}
+	return ""
+}
+
+type PbPageList struct {
+	Pages                []*PbPageInfo `protobuf:"bytes,1,rep,name=pages,proto3" json:"pages,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *PbPageList) Reset()         { *m = PbPageList{} }
+func (m *PbPageList) String() string { return proto.CompactTextString(m) }
+func (*PbPageList) ProtoMessage()    {}
+func (*PbPageList) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f200ecbfd1cbb64d, []int{5}
+}
+
+func (m *PbPageList) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PbPageList.Unmarshal(m, b)
+}
+func (m *PbPageList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PbPageList.Marshal(b, m, deterministic)
+}
+func (m *PbPageList) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PbPageList.Merge(m, src)
+}
+func (m *PbPageList) XXX_Size() int {
+	return xxx_messageInfo_PbPageList.Size(m)
+}
+func (m *PbPageList) XXX_DiscardUnknown() {
+	xxx_messageInfo_PbPageList.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PbPageList proto.InternalMessageInfo
+
+func (m *PbPageList) GetPages() []*PbPageInfo {
+	if m != nil {
+		return m.Pages
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*PbBookInfo)(nil), "pb.PbBookInfo")
 	proto.RegisterType((*PbBookList)(nil), "pb.PbBookList")
+	proto.RegisterType((*PbChapterList)(nil), "pb.PbChapterList")
+	proto.RegisterType((*PbChapterInfo)(nil), "pb.PbChapterInfo")
+	proto.RegisterType((*PbPageInfo)(nil), "pb.PbPageInfo")
+	proto.RegisterType((*PbPageList)(nil), "pb.PbPageList")
 }
 
 func init() { proto.RegisterFile("comic.proto", fileDescriptor_f200ecbfd1cbb64d) }
 
 var fileDescriptor_f200ecbfd1cbb64d = []byte{
-	// 111 bytes of a gzipped FileDescriptorProto
+	// 183 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4e, 0xce, 0xcf, 0xcd,
 	0x4c, 0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2a, 0x48, 0x52, 0x52, 0xe0, 0xe2, 0x0a,
 	0x48, 0x72, 0xca, 0xcf, 0xcf, 0xf6, 0xcc, 0x4b, 0xcb, 0x17, 0x12, 0xe2, 0x62, 0xc9, 0x4b, 0xcc,
 	0x4d, 0x95, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0c, 0x02, 0xb3, 0x95, 0x8c, 0x60, 0x2a, 0x7c, 0x32,
 	0x8b, 0x4b, 0x84, 0x54, 0xb8, 0x58, 0x93, 0xf2, 0xf3, 0xb3, 0x8b, 0x25, 0x18, 0x15, 0x98, 0x35,
-	0xb8, 0x8d, 0xf8, 0xf4, 0x0a, 0x92, 0xf4, 0x10, 0x06, 0x04, 0x41, 0x24, 0x93, 0xd8, 0xc0, 0x16,
-	0x18, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0xe6, 0x40, 0xc5, 0x97, 0x6f, 0x00, 0x00, 0x00,
+	0xb8, 0x8d, 0xf8, 0xf4, 0x0a, 0x92, 0xf4, 0x10, 0x06, 0x04, 0x41, 0x24, 0x95, 0xec, 0xb8, 0x78,
+	0x03, 0x92, 0x9c, 0x33, 0x12, 0x0b, 0x4a, 0x52, 0x8b, 0xc0, 0xda, 0x74, 0xb9, 0x38, 0x92, 0x21,
+	0x5c, 0x98, 0x4e, 0x41, 0x88, 0x4e, 0xa8, 0x22, 0xb0, 0x66, 0xb8, 0x12, 0x25, 0x65, 0x24, 0xfd,
+	0x38, 0x1d, 0x06, 0x76, 0x7a, 0x40, 0x62, 0x7a, 0x2a, 0x4c, 0x45, 0x4a, 0x62, 0x49, 0x22, 0x4c,
+	0x05, 0x88, 0x0d, 0x71, 0x3a, 0x48, 0x05, 0xcc, 0xe9, 0x05, 0x89, 0xe9, 0xa9, 0x68, 0x4e, 0x87,
+	0x19, 0x10, 0x04, 0x91, 0x4c, 0x62, 0x03, 0x87, 0x8d, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x78,
+	0xc7, 0xa3, 0x43, 0x2a, 0x01, 0x00, 0x00,
 }

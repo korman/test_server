@@ -7,10 +7,6 @@ import (
 	"sync"
 )
 
-func Init() {
-
-}
-
 type ComicManager struct {
 	books    []*internal.BookImp
 	bookList *pb.PbBookList
@@ -28,6 +24,10 @@ func Instance() *ComicManager {
 
 func (ptr *ComicManager) GetBookList() (bookList *pb.PbBookList) {
 	return ptr.bookList
+}
+
+func (ptr *ComicManager) GetBook(id int) (book Book) {
+	return ptr.books[id]
 }
 
 func (ptr *ComicManager) LoadComicFiles(rootPath string) {
@@ -58,13 +58,14 @@ func (ptr *ComicManager) LoadComicFiles(rootPath string) {
 
 		book := &internal.BookImp{
 			FileName: info.Name(),
-			FilePath: rootPath + info.Name(),
+			FilePath: rootPath + "/" + info.Name(),
 		}
 
-		print("Walk %s\n", rootPath+info.Name())
+		print("Walk path ", rootPath+info.Name()," completed\n")
 
 		book.Init()
 
+		ptr.books = append(ptr.books,book)
 		books = append(books, book.GetBookInfo())
 	}
 
