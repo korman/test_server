@@ -26,6 +26,7 @@ func Init() {
 		getTitleList.GET("", handler.Index)
 		getTitleList.GET("booklist", handler.BookList)
 		getTitleList.GET("chapterlist",handler.ChapterList)
+		getTitleList.GET("pagelist",handler.PageList)
 	}
 
 	ginpprof.Wrap(router)

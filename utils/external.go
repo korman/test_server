@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"comic_server/interfaces"
 	"comic_server/pb"
 	"comic_server/utils/internal"
 	"io/ioutil"
@@ -26,7 +27,7 @@ func (ptr *ComicManager) GetBookList() (bookList *pb.PbBookList) {
 	return ptr.bookList
 }
 
-func (ptr *ComicManager) GetBook(id int) (book Book) {
+func (ptr *ComicManager) GetBook(id int) (book interfaces.Book) {
 	return ptr.books[id]
 }
 

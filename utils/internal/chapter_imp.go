@@ -9,6 +9,7 @@ import (
 type ChapterImp struct {
 	info *pb.PbChapterInfo
 	pageList *pb.PbPageList
+	pages []*PageImp
 	FilePath string
 	FileName string
 }
@@ -22,6 +23,10 @@ func (ptr *ChapterImp) Init() {
 	if err != nil {
 		log.Fatal(err.Error())
 		return
+	}
+
+	if nil == ptr.pages {
+		ptr.pages = make([]*PageImp,0)
 	}
 
 	if nil == ptr.pageList {
@@ -46,6 +51,7 @@ func (ptr *ChapterImp) Init() {
 
 		page.Init()
 
+		ptr.pages = append(ptr.pages,page)
 		pages = append(pages, page.GetPageInfo())
 	}
 

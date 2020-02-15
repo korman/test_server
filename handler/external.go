@@ -77,3 +77,45 @@ func ChapterList(c *gin.Context) {
 		"pb_data": base64Data,
 	})
 }
+
+func PageList(c *gin.Context) {
+	msgId,err := strconv.Atoi(c.Query("msgId"))
+
+	if nil != err {
+		log.Fatal(err.Error())
+		return
+	}
+
+	bookId,err := strconv.Atoi(c.Query("book_id"))
+
+	if nil != err {
+		log.Fatal(err.Error())
+		return
+	}
+
+	chapterId,err := strconv.Atoi(c.Query("chapter_id"))
+
+	if nil != err {
+		log.Fatal(err.Error())
+		return
+	}
+
+	book := utils.Instance().GetBook(bookId)
+	chapter := book.GetChapter(chapterId)
+
+	data, err := proto.Marshal(chapter.GetPageList())
+
+	if nil != err {
+		log.Fatal("Marshal booklist data error: \n",err)
+		return
+	}
+
+	base64Data := base64.StdEncoding.EncodeToString(data)
+
+	log.Print("Send Pages List,len is :",len(base64Data))
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg_id":msgId,
+		"pb_data": base64Data,
+	})
+}

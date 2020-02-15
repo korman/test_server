@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"comic_server/interfaces"
 	"comic_server/pb"
 	"io/ioutil"
 	"log"
@@ -31,6 +32,10 @@ func (ptr *BookImp) Init() (result bool) {
 		return
 	}
 
+	if nil == ptr.chapters {
+		ptr.chapters = make([]*ChapterImp,0)
+	}
+
 	if nil == ptr.chapterList {
 		ptr.chapterList = &pb.PbChapterList{}
 	}
@@ -55,6 +60,7 @@ func (ptr *BookImp) Init() (result bool) {
 
 		chapter.Init()
 
+		ptr.chapters = append(ptr.chapters,chapter)
 		chapters = append(chapters, chapter.GetChapterInfo())
 	}
 
@@ -69,4 +75,13 @@ func (ptr *BookImp) GetBookInfo() (p *pb.PbBookInfo) {
 
 func (ptr *BookImp) GetChapterList() (p *pb.PbChapterList) {
 	return ptr.chapterList
+}
+
+func (ptr *BookImp) GetChapter(index int) (p interfaces.Chapter) {
+	if index >= len(ptr.chapters) || 0 > index {
+		log.Fatal("Out range,size is ",len(ptr.chapters),"get index is ",index)
+		return nil
+	}
+
+	return ptr.chapters[index]
 }
