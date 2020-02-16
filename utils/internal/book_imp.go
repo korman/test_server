@@ -67,11 +67,19 @@ func (ptr *BookImp) Init() (result bool) {
 				pathList = make([]string,0)
 				nameList = make([]string,0)
 
-				ptr.chapters = append(ptr.chapters,chapter)
-				chapters = append(chapters, chapter.GetChapterInfo())
+				log.Print("Added File ",info.Name()," to chapters\n")
+				log.Print("PathList size:",len(pathList),"\n")
 
-				indexForJpgs++
+				ptr.chapters = append(ptr.chapters,chapter)
+
+				if nil == chapter.GetChapterInfo() {
+					log.Fatal("Has Nil Elment: name is ",ptr.FilePath)
+				}
+		
+				chapters = append(chapters, chapter.GetChapterInfo())
 			}
+
+			indexForJpgs++
 
 			continue
 		}
@@ -86,6 +94,7 @@ func (ptr *BookImp) Init() (result bool) {
 		chapter.Init()
 
 		ptr.chapters = append(ptr.chapters,chapter)
+
 		chapters = append(chapters, chapter.GetChapterInfo())
 	}
 
@@ -98,8 +107,17 @@ func (ptr *BookImp) Init() (result bool) {
 		chapter.InitForList(pathList,nameList)
 
 		ptr.chapters = append(ptr.chapters,chapter)
+
+		if nil == chapter.GetChapterInfo() {
+			log.Fatal("Has Nil Elment: name is ",ptr.FilePath)
+		}
+
 		chapters = append(chapters, chapter.GetChapterInfo())
 	}
+
+	// for _,info := range chapters {
+	// 	log.Print("Current chapter: ",info)
+	// }
 
 	ptr.chapterList.Chapters = chapters
 

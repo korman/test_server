@@ -40,7 +40,6 @@ func (ptr *PageImp) Init() {
 	bytes := buffer.Bytes()
 
 	encodeString := base64.StdEncoding.EncodeToString(bytes)
-	log.Print("Encoding image data size:",len(encodeString))
 
 	ptr.info.Data = encodeString
 }

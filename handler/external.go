@@ -61,6 +61,8 @@ func ChapterList(c *gin.Context) {
 
 	book := utils.Instance().GetBook(bookId)
 
+	log.Print("ChapterListCount is ",len(book.GetChapterList().Chapters),"\n")
+
 	data, err := proto.Marshal(book.GetChapterList())
 
 	if nil != err {
