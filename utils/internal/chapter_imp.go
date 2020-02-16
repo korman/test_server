@@ -58,6 +58,27 @@ func (ptr *ChapterImp) Init() {
 	ptr.pageList.Pages = pages
 }
 
+func (ptr *ChapterImp) InitForList (paths []string,names []string) {
+	if len(paths) != len(names) {
+		log.Fatal("paths count != names count")
+		return
+	}
+
+	var pages []*pb.PbPageInfo = make([]*pb.PbPageInfo, 0)
+
+	for index,info := range paths {
+		page := &PageImp{
+			FileName: names[index],
+			FilePath: info,
+		}
+
+		page.Init()
+
+		ptr.pages = append(ptr.pages,page)
+		pages = append(pages, page.GetPageInfo())
+	}
+}
+
 func (ptr *ChapterImp) GetChapterInfo() (p *pb.PbChapterInfo) {
 	return ptr.info
 }

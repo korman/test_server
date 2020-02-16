@@ -11,7 +11,7 @@ func main() {
 
 	gin.SetMode(gin.DebugMode)
 
-	utils.Instance().LoadComicFiles("/Users/kakuhiroshi/Downloads/漫画")
+	utils.Instance().LoadComicFiles("E:\\hanman_jpg")
 
 	router.Init()
 }

@@ -4,6 +4,7 @@ import (
 	"comic_server/interfaces"
 	"comic_server/pb"
 	"io/ioutil"
+	"strconv"
 	"log"
 )
 
@@ -41,6 +42,10 @@ func (ptr *BookImp) Init() (result bool) {
 	}
 
 	var chapters []*pb.PbChapterInfo = make([]*pb.PbChapterInfo, 0)
+	var defaultOneChapterPagesCount = 30
+	var pathList = make([]string,0)
+	var nameList = make([]string,0)
+	var indexForJpgs = 0
 
 	for _, info := range readerInfo {
 		if info == nil {
@@ -48,6 +53,26 @@ func (ptr *BookImp) Init() (result bool) {
 		}
 
 		if !info.IsDir() {
+			pathList = append(pathList,ptr.FilePath + "/" + info.Name())
+			nameList = append(nameList,info.Name())
+
+			if defaultOneChapterPagesCount <= len(pathList) {
+				chapter := &ChapterImp{
+					FileName: "自动" + strconv.Itoa(indexForJpgs),
+					FilePath: ptr.FilePath + "/" + "自动" + strconv.Itoa(indexForJpgs),
+				}
+
+				chapter.InitForList(pathList,nameList)
+
+				pathList = make([]string,0)
+				nameList = make([]string,0)
+
+				ptr.chapters = append(ptr.chapters,chapter)
+				chapters = append(chapters, chapter.GetChapterInfo())
+
+				indexForJpgs++
+			}
+
 			continue
 		}
 
@@ -59,6 +84,18 @@ func (ptr *BookImp) Init() (result bool) {
 		print("Walk ", ptr.FilePath + "/" + info.Name()," chapter\n")
 
 		chapter.Init()
+
+		ptr.chapters = append(ptr.chapters,chapter)
+		chapters = append(chapters, chapter.GetChapterInfo())
+	}
+
+	if len(pathList) > 0 {
+		chapter := &ChapterImp{
+			FileName: "自动" + strconv.Itoa(indexForJpgs),
+			FilePath: ptr.FilePath + "/" + "自动" + strconv.Itoa(indexForJpgs),
+		}
+
+		chapter.InitForList(pathList,nameList)
 
 		ptr.chapters = append(ptr.chapters,chapter)
 		chapters = append(chapters, chapter.GetChapterInfo())
